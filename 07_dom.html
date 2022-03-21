@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Dom</title>
+    <style>
+        .citation {
+            font-size: italic;
+            color: rgb(160, 71, 71);
+        }
+        .fondVert {
+            background-color: rgb(50, 139, 95);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">DOM HTML</h1>
+
+    <p class="test test 2">
+        Chapitre 1 : Lorem ipsum dolor sit amet
+        <strong>Texte en Gras</strong> consectetur adipicing elit. Sit ex quidem voluptatem vero. Optio dolorem incidunt ea quos nesciunt
+        <span class="citation">
+            Citation 1 : voluptatibus veniam valit eaque, similique
+        </span>
+        beatae facere, nihil fugit, cum sit.
+    </p>
+    <p>
+        Chapitre 2 : Lorem ipsum dolor sit amet consectetur adipicing elit. Vel Vero qui eaque perferendis necessitatibus numquam, earum ab sed quos
+        <span class="citation">
+            Citation 2 : culpa vitae possimus maxime voluptatibus
+        </span>
+        voluptem sint impedit quasi nisi at. Earum labore quia delectus dignissimos quis fugit ipsam provident sequi.
+    </p>
+    <ul>
+        <li>Fraises</li>
+        <li>Pommes</li>
+        <li>Poires</li>
+        <li>Bananes</li>
+        <li>Kiwis</li>
+        <li>Raisin</li>
+    </ul>
+    <a href="https://google.fr">Cliquez ici</a>
+
+    <!--JAVASCRIPT-->
+    <script>
+        console.log('largeur de l\'ecran : ' + window.innerWidth + 'px');
+        console.log('chemin du fichier : ' + document.documentURI);
+        
+        //selectionner par un ID
+        let title = document.getElementById('title');
+
+        // recupere le texte
+        console.log(title.innerText);
+        // recupere le HTML
+        console.log(title.innerHTML);
+        //Modifier le contenu TEXTE
+        title.innerText = 'Nouveau Titre';
+        //Modifer contenu HTML
+        title.innerHTML = '<em>Nouveau</em> Titre';
+
+        //Selectionner par la CLASS
+        let citation = document.getElementsByClassName('citation');
+        console.log(citation); //tableau en resultat
+        console.log(citation[1]); //tableau a l'index 1
+
+        //selectionner par leur balise HTML
+        let paragraphe = document.getElementsByTagName('p');
+        console.log(paragraphe[0].innerHTML); //contenu texte du premier paragraphe
+
+        // selection avec selecteurs CSS
+        console.log(document.querySelector('#title')); 
+        console.log(document.querySelectorAll('.citation'));
+
+        //Recuperer attributs HTML
+        let a = document.querySelector('a');
+        console.log(a.getAttribute('href'));
+        //modifier attribut
+        a.setAttribute('href', 'https://www.weformyou.fr');
+
+        //modifier style CSS
+        //document.querySelector('p').style.backgroundColor = "#aaa";
+
+        //recuperer liste des classes CSS d'un element HTML
+        console.log(document.querySelector('p').classList);
+        //ajouter une classe css a un element
+        document.querySelector('p').classList.add('fondVert');
+        //suprimer une classe css
+        document.querySelector('p').classList.remove('fondVert');
+        //selectionner elements pairs
+        let tabLi = document.querySelectorAll('ul li:nth-child(even)');
+        console.log(tabLi);
+
+        for (let li of tabLi){
+            li.classList.add('fondVert');
+        }
+
+        //tester la presence d'une classe CSS sur un element HTML
+        if (document.querySelector('li:nth-child(2)').classList.contains('fondVert')){
+            console.log('la classe verte est affectée');
+        }
+
+        // echanger la presence d'une class css a un element HTML
+        document.querySelector('p').classList.toggle('fondVert');  
+        
+        //deplacer element Html(transforme en enfant et le mets a la fin de l'element)
+        document.querySelector('p').appendChild(document.querySelector('h1'));
+    </script>
+</body>
+</html>
